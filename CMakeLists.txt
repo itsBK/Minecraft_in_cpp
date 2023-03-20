@@ -81,6 +81,7 @@ add_executable(mc-one-week
     Source/Model.cpp
 )
 
+set(SFML_ROOT F:/Development/SFML-2.5.1/SFML)
 #Set module path
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
@@ -99,7 +100,7 @@ function(setup_target TARGET)
     #Set flags
     if(MSVC)
         target_compile_options(${TARGET} PRIVATE 
-            /W4 /WX)
+            /W1 /WX)
     else()
         target_compile_options(${TARGET} PRIVATE 
             -Wall -Wextra -pedantic)
@@ -109,6 +110,7 @@ function(setup_target TARGET)
         ${TARGET}
         PRIVATE
         deps
+        F:/Development/SFML-2.5.1/SFML/include
     )
 endfunction(setup_target)
 
@@ -117,8 +119,8 @@ setup_target(mc-one-week)
 target_link_libraries(mc-one-week
     glm
     glad
-    Threads::Threads 
-    ${SFML_LIBRARIES} 
+    Threads::Threads
+    ${SFML_LIBRARIES}
     ${SFML_DEPENDENCIES}
     ${CMAKE_DL_LIBS}
 )
